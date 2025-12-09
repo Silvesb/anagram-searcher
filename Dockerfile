@@ -29,4 +29,4 @@ RUN sed -ri 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-availabl
 RUN rm -f bootstrap/cache/*.php \
     && chown -R www-data:www-data storage bootstrap/cache
 
-CMD ["apache2-foreground"]
+CMD ["sh", "-c", "php artisan migrate --force --no-interaction && apache2-foreground"]
